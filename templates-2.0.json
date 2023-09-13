@@ -1,6 +1,78 @@
 {
   "version": "2",
   "templates": [
+	  {
+  "type": 1,
+  "title": "LAMP Stack",
+  "description": "Linux, Apache, MySQL, PHP stack",
+  "categories": ["webserver", "database"],
+  "platform": "linux",
+  "logo": "https://example.com/your-logo.png",
+  "services": [
+    {
+      "type": 1,
+      "title": "Apache/PHP",
+      "description": "Apache Web Server with PHP",
+      "image": "php:7.4-apache",
+      "ports": ["80/tcp"],
+      "volumes": [
+        {
+          "container": "/usr/local/apache2/htdocs",
+          "bind": "/path/to/your/html",
+          "rw": true
+        }
+      ],
+      "env": [
+        {
+          "name": "APACHE_PORT",
+          "description": "Apache Web Server port",
+          "setOnCreate": true
+        }
+      ]
+    },
+    {
+      "type": 1,
+      "title": "MySQL",
+      "description": "MySQL Database Server",
+      "image": "mysql:5.7",
+      "ports": ["3306/tcp"],
+      "volumes": [
+        {
+          "container": "/var/lib/mysql",
+          "bind": "/path/to/your/mysql/data",
+          "rw": true
+        }
+      ],
+      "env": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "description": "MySQL root password",
+          "setOnCreate": true
+        },
+        {
+          "name": "MYSQL_DATABASE",
+          "description": "MySQL database name",
+          "setOnCreate": true
+        },
+        {
+          "name": "MYSQL_USER",
+          "description": "MySQL username",
+          "setOnCreate": true
+        },
+        {
+          "name": "MYSQL_PASSWORD",
+          "description": "MySQL user password",
+          "setOnCreate": true
+        },
+        {
+          "name": "MYSQL_PORT",
+          "description": "MySQL port",
+          "setOnCreate": true
+        }
+      ]
+    }
+  ]
+},
     {
       "type": 1,
       "title": "Registry",
